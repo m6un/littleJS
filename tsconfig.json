@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es6",      // Specifies the output language level.
+      "module": "es2020",   // Specifies the module system for the output.
+      "moduleResolution": "Node",
+      "outDir": "dist",     // Redirect output structure to the directory.
+      "strict": true,       // Enables a wide range of type checking behavior.
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*.ts"],   // The glob patterns that specify what files to include in the compilation.
+    "exclude": ["node_modules"]   // Specifies what files to exclude from the compilation.
+  }
+  
