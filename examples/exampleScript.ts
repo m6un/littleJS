@@ -1,21 +1,34 @@
-import { elements, Signal, createComponent } from "../src/index";
+import { elements, Signal, createComponent, unmountComponent } from "../src/index";
 
 const { div, button, br } = elements;
 
-console.log("div",elements.div)
-const state = new Signal({ counter1: 0, counter2: 0 });
+const counter1 = new Signal(0)
 
-const counterComponent = createComponent(() => {
+const counterComponent =  createComponent(() => {
   return div({}, [
-    `Counter 1: ${state.get().counter1} `,
-    button({ onClick: () => state.get().counter1++ }, ['Increment Counter 1']),
+    `Counter 1: ${counter1.get()} `,
+    button({ onClick: () => {counter1.set(counter1.get() + 1)} }, ['Increment Counter 1']),
     br(),
-    `Counter 2: ${state.get().counter2} `,
-    button({ onClick: () => state.get().counter2++ }, ['Increment Counter 2']),
   ]);
-}, [state]);
+}, [counter1], 
+{
+  beforeMount : [() => console.log("beforeMount")],
+  beforeUpdate: [() => console.log("beforeUpdate")],
+  updated: [() => console.log("updated")]
+});
+
+const buttonComponent = createComponent(() => {
+  return button({onClick: () => {unmountComponent(counterComponent, {beforeDestroy : [() => console.log('beforeDestroy')], destroyed: [() => console.log('destroyed')]})}}, ["delete"])
+}, [], {})
 
 if(counterComponent.element){
   document.body.appendChild(counterComponent.element);
 }
+if(buttonComponent.element){
+  document.body.appendChild(buttonComponent.element);
+}
+
+console.log(counterComponent)
+
+
 

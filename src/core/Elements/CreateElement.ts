@@ -35,7 +35,6 @@ export function createElement(tag: any, attributes : {[key : string] : any} = {}
   (Array.isArray(children) ? children : [children]).forEach((child : any) => {
     if (typeof child === 'string') {
       child = document.createTextNode(child);
-      // console.log({child})
     } else if (child && child.element) {
       child = child.element;
     }

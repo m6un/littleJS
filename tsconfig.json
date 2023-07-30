@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-      "target": "es6",      // Specifies the output language level.
-      "module": "es2020",   // Specifies the module system for the output.
+      "target": "ES2017",      // Specifies the output language level.
+      "module": "ESNext",   // Specifies the module system for the output.
       "moduleResolution": "Node",
       "outDir": "dist",     // Redirect output structure to the directory.
       "strict": true,       // Enables a wide range of type checking behavior.

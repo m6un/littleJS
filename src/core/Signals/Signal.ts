@@ -16,7 +16,6 @@ export class Signal {
         }
         return new Proxy(obj, {
           set: (target, property, value) => {
-            console.log({target, property, value})
             target[property] = this.observe(value);
             this.notifyListeners();
             return true;
@@ -27,7 +26,6 @@ export class Signal {
     }
   
     private notifyListeners(): void {
-      console.log(this.listeners)
       this.listeners.forEach((listener) => listener());
     }
   
